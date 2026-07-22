@@ -2,10 +2,14 @@ const express = require("express");
 
 const app = express();
 
+// Middleware
 app.use(express.json());
 
+// Import routes
 const authRoutes = require("./routes/authRoutes");
+const productRoutes = require("./routes/productRoutes");
 
+// Root route
 app.get("/", (req, res) => {
   res.json({
     success: true,
@@ -13,6 +17,8 @@ app.get("/", (req, res) => {
   });
 });
 
+// Register routes
 app.use("/api/auth", authRoutes);
+app.use("/api/products", productRoutes);
 
 module.exports = app;
