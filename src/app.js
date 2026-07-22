@@ -5,11 +5,14 @@ const app = express();
 // Middleware
 app.use(express.json());
 
-// Import routes
+// Routes
 const authRoutes = require("./routes/authRoutes");
 const productRoutes = require("./routes/productRoutes");
 
-// Root route
+// Error Middleware
+const errorHandler = require("./middleware/errorMiddleware");
+
+// Root Route
 app.get("/", (req, res) => {
   res.json({
     success: true,
@@ -17,8 +20,11 @@ app.get("/", (req, res) => {
   });
 });
 
-// Register routes
+// API Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);
+
+// Error Handler (Must be the last middleware)
 app.use(errorHandler);
+
 module.exports = app;

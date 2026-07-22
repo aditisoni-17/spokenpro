@@ -39,11 +39,11 @@ const register = async (req, res) => {
     res.status(201).json({
       success: true,
       message: "User registered successfully",
-      user: {
-        id: user._id,
-        name: user.name,
-        email: user.email,
-      },
+      data:{
+      id:user._id,
+      name:user.name,
+      email:user.email
+   }
     });
 
   } catch (error) {
@@ -102,11 +102,10 @@ const login = async (req, res) => {
       success: true,
       message: "Login successful",
       token,
-      user: {
-        id: user._id,
-        name: user.name,
-        email: user.email,
-      },
+      data:{
+      token,
+      user
+   }
     });
 
   } catch (error) {
