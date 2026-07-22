@@ -61,9 +61,35 @@ const getProducts = async (req, res) => {
 };
 
 const getProductById = async (req, res) => {
-  res.json({
-    message: "Get Product By ID API Working",
-  });
+  try {
+    // Get product ID from URL
+    const { id } = req.params;
+
+    // Find product
+    const product = await Product.findById(id);
+
+    // Check if product exists
+    if (!product) {
+      return res.status(404).json({
+        success: false,
+        message: "Product not found",
+      });
+    }
+
+    // Return product
+    res.status(200).json({
+      success: true,
+      product,
+    });
+
+  } catch (error) {
+    console.error(error);
+
+    res.status(500).json({
+      success: false,
+      message: "Server Error",
+    });
+  }
 };
 
 const updateProduct = async (req, res) => {
