@@ -2,15 +2,17 @@ const express = require("express");
 
 const app = express();
 
-// Middleware to parse JSON requests
 app.use(express.json());
 
-// Test Route
+const authRoutes = require("./routes/authRoutes");
+
 app.get("/", (req, res) => {
-    res.status(200).json({
-        success: true,
-        message: "API is running successfully 🚀"
-    });
+  res.json({
+    success: true,
+    message: "API is running successfully 🚀",
+  });
 });
+
+app.use("/api/auth", authRoutes);
 
 module.exports = app;
