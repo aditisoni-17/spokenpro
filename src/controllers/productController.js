@@ -1,6 +1,6 @@
 const Product = require("../models/Product");
 
-const createProduct = async (req, res) => {
+const createProduct = async (req, res,next) => {
   try {
     // Get data from request body
     const { name, description, price, stock, category } = req.body;
@@ -30,15 +30,10 @@ const createProduct = async (req, res) => {
     });
 
   } catch (error) {
-    console.error(error);
-
-    res.status(500).json({
-      success: false,
-      message: "Server Error",
-    });
+    next(error);
   }
 };
-const getProducts = async (req, res) => {
+const getProducts = async (req, res,next) => {
   try {
     // Search query
     const { search } = req.query;
@@ -77,13 +72,7 @@ const getProducts = async (req, res) => {
     });
 
   } catch (error) {
-    console.error(error);
-
-    res.status(500).json({
-      success: false,
-      message: "Server Error",
-    });
-  }
+    next(error);
 };
 const getProductById = async (req, res) => {
   try {
@@ -123,6 +112,7 @@ const getProductById = async (req, res) => {
     });
   }
 };
+}
 
 const updateProduct = async (req, res) => {
   try {
