@@ -1,6 +1,6 @@
 # 🚀 Product Management API
 
-A RESTful Product Management API built with **Node.js**, **Express.js**, **MongoDB**, and **JWT Authentication**.
+The API is deployed on Render but can be tested using **Postman** or any REST API client.
 
 ---
 
