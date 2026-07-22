@@ -115,7 +115,10 @@ backend/
 ├── server.js
 ├── .env.example
 ├── package.json
-└── README.md
+
+screenshots
+
+README.md
 ```
 
 ---
