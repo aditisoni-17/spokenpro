@@ -8,7 +8,7 @@ A RESTful Product Management API built with **Node.js**, **Express.js**, **Mongo
 
 ## 🏠 Home Endpoint
 
-![Home](./screenshots/home.png)
+![Home](./screenshots/home1.png)
 
 ---
 
