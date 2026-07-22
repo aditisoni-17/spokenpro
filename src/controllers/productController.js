@@ -38,14 +38,40 @@ const createProduct = async (req, res) => {
     });
   }
 };
-
 const getProducts = async (req, res) => {
   try {
-    // Fetch all products
-    const products = await Product.find();
+    // Search query
+    const { search } = req.query;
+
+    // Pagination
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 5;
+    const skip = (page - 1) * limit;
+
+    // Search filter
+    let filter = {};
+
+    if (search) {
+      filter.name = {
+        $regex: search,
+        $options: "i",
+      };
+    }
+
+    // Fetch products with pagination
+    const products = await Product.find(filter)
+      .skip(skip)
+      .limit(limit);
+
+    // Count matching products
+    const totalProducts = await Product.countDocuments(filter);
 
     res.status(200).json({
       success: true,
+      page,
+      limit,
+      totalProducts,
+      totalPages: Math.ceil(totalProducts / limit),
       count: products.length,
       products,
     });
@@ -59,7 +85,6 @@ const getProducts = async (req, res) => {
     });
   }
 };
-
 const getProductById = async (req, res) => {
   try {
     // Get product ID from URL
