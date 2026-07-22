@@ -99,14 +99,18 @@ const login = async (req, res) => {
 
     // Step 7: Send response
     res.status(200).json({
-      success: true,
-      message: "Login successful",
-      token,
-      data:{
-      token,
-      user
-   }
-    });
+    success: true,
+    message: "Login successful",
+    data: {
+        token,
+        user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        },
+    },
+});
+   
 
   } catch (error) {
     console.error(error);
