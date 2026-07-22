@@ -10,13 +10,13 @@ A secure and scalable REST API built with **Node.js**, **Express.js**, **MongoDB
 
 ## 🏠 Home Endpoint
 
-![Home](./screenshots/home.png)
+![Home](./screenshots/home1.png)
 
 ---
 
 ## 👤 Register User
 
-![Register](./screenshots/register.png)
+![Register](./screenshots/ragister.png)
 
 ---
 
